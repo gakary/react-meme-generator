@@ -4,19 +4,10 @@ export default function Meme() {
   const [meme, setMeme] = React.useState({
     topText: "",
     bottomText: "",
-    randomImage: "http://i.imgflip.com/1bij.jpg",
+    randomImage:
+      "https://cdn.vox-cdn.com/thumbor/VZNJM5S4Cw2i3JaycT9waVLCwqw=/715x248:1689x721/1200x800/filters:focal(972x299:1278x605)/cdn.vox-cdn.com/uploads/chorus_image/image/69305239/shrek4_disneyscreencaps.com_675.0.jpg",
   });
   const [allMemes, setAllMemes] = React.useState([]);
-
-  /**
-    useEffect takes a function as its parameter. If that function
-    returns something, it needs to be a cleanup function. Otherwise,
-    it should return nothing. If we make it an async function, it
-    automatically retuns a promise instead of a function or nothing.
-    Therefore, if you want to use async operations inside of useEffect,
-    you need to define the function separately inside of the callback
-    function, as seen below:
-    */
 
   React.useEffect(() => {
     async function getMemes() {
@@ -46,6 +37,11 @@ export default function Meme() {
 
   return (
     <main>
+      <div className="meme">
+        <img src={meme.randomImage} className="meme--image" />
+        <h2 className="meme--text top">{meme.topText}</h2>
+        <h2 className="meme--text bottom">{meme.bottomText}</h2>
+      </div>
       <div className="form">
         <input
           type="text"
@@ -66,11 +62,6 @@ export default function Meme() {
         <button className="form--button" onClick={getMemeImage}>
           Get a new meme image 🖼
         </button>
-      </div>
-      <div className="meme">
-        <img src={meme.randomImage} className="meme--image" />
-        <h2 className="meme--text top">{meme.topText}</h2>
-        <h2 className="meme--text bottom">{meme.bottomText}</h2>
       </div>
     </main>
   );
